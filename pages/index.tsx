@@ -2,8 +2,32 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useQuery } from 'urql'
+import { PRODUCT_QUERY } from '../lib/query'
+
+type product = {
+  attributes:{title: string;
+  descrption: string;
+  price: number;
+  slug: string;
+  image: {}
+}}
+
+interface data {
+  products:{
+  data: product[]
+}
+}
+
 
 const Home: NextPage = () => {
+  // fetch products from strapi
+  const [results] =useQuery<data>({query: PRODUCT_QUERY})
+  const {data, fetching, error} = results
+
+  if (fetching) return <p>Loading...  </p>
+  if (error) return <p>Oh no... {error.message} </p>
+  console.log(data?.products.data[0].attributes.title)
   return (
     <div className={styles.container}>
       <Head>

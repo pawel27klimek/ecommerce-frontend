@@ -6,6 +6,7 @@ import {useQuery} from "urql";
 import {PRODUCT_QUERY} from "../lib/query";
 import Product from "./Product";
 import {product, data} from "./types";
+import {Gallery} from "../styles/Gallery";
 
 const Home: NextPage = () => {
   // fetch products from strapi
@@ -19,10 +20,17 @@ const Home: NextPage = () => {
   // console.log(data?.products.data[0].attributes.title);
   console.log(products);
   return (
-    <div className={styles.container}>
-      {products?.map((product) => (
-        <Product product={product.attributes} key={product.attributes.slug} />
-      ))}
+    <div>
+      <main>
+        <Gallery>
+          {products?.map((product) => (
+            <Product
+              product={product.attributes}
+              key={product.attributes.slug}
+            />
+          ))}
+        </Gallery>
+      </main>
     </div>
   );
 };

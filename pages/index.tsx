@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import {useQuery} from "urql";
 import {PRODUCT_QUERY} from "../lib/query";
-import Product from "./Product";
+import Product from "../components/Product";
 import {product, data} from "./types";
 import {Gallery} from "../styles/Gallery";
 

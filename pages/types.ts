@@ -16,6 +16,7 @@ export type product = {
       };
     };
   };
+  quantity?: number;
 };
 
 export type attributes = {
@@ -26,3 +27,11 @@ export type data = {
     data: attributes[];
   };
 };
+
+export interface IShopContext {
+  quantity: number;
+  increment: () => void;
+  decrement: () => void;
+  onAdd: (product: product, quantity: number) => void;
+  cartItems: product[];
+}

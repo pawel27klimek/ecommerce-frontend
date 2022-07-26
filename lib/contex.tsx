@@ -1,22 +1,26 @@
 import {useContext, createContext, ReactNode, useState} from "react";
 import React from "react";
 import {IShopContext, product} from "../pages/types";
-import {NavItems} from "../styles/NavStyles";
-import Product from "../components/Product";
-import {exists} from "fs";
 
 const ShopContext = createContext<IShopContext>({
   quantity: 1,
   increment: () => undefined,
   decrement: () => undefined,
   onAdd: () => undefined,
+  onRemove: () => undefined,
   cartItems: [],
+  showCart: false,
+  setShowCart: () => undefined,
+  totalQuantities: 0,
+  totalPrice: 0,
 });
 
 export const StateContext = ({children}: {children: ReactNode}) => {
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState<product[]>([]);
   const [quantity, setQuantity] = useState(1);
+  const [totalQuantities, setTotalQuantities] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const increment = () => {
     setQuantity((value) => value + 1);
@@ -34,6 +38,8 @@ export const StateContext = ({children}: {children: ReactNode}) => {
   };
 
   const onAdd = (product: product, quantity: number) => {
+    setTotalPrice((prevPrice) => prevPrice + product.price * quantity);
+    setTotalQuantities((prevTotal) => prevTotal + quantity);
     const exists = cartItems.find((item) => item.slug === product.slug);
     if (exists) {
       setCartItems(
@@ -46,6 +52,27 @@ export const StateContext = ({children}: {children: ReactNode}) => {
     } else {
       setCartItems((value) => [...value, {...product, quantity}]);
     }
+    setQuantity(1);
+  };
+
+  const onRemove = (product: product) => {
+    // total price
+    setTotalPrice((prevPrice) => prevPrice - product.price);
+    // decrease total
+    setTotalQuantities((prevTotal) => prevTotal - 1);
+    // check if product is present in the cart
+    const exists = cartItems.find((item) => item.slug === product.slug);
+    if (exists?.quantity === 1) {
+      setCartItems(cartItems.filter((item) => item.slug !== product.slug));
+    } else {
+      setCartItems(
+        cartItems.map((item) =>
+          item.slug === product.slug
+            ? {...exists!, quantity: exists?.quantity! - 1}
+            : item
+        )
+      );
+    }
   };
 
   return (
@@ -56,6 +83,11 @@ export const StateContext = ({children}: {children: ReactNode}) => {
         decrement,
         onAdd,
         cartItems,
+        showCart,
+        setShowCart,
+        onRemove,
+        totalQuantities,
+        totalPrice,
       }}
     >
       {children}

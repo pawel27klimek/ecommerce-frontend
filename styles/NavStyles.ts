@@ -21,6 +21,21 @@ export const NavItems = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    span {
+      background: #ff2626;
+      color: white;
+      width: 0.75rem;
+      height: 0.75rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 0.6rem;
+      position: absolute;
+      right: 20%;
+      top: -12%;
+      pointer-events: none;
+    }
   }
   h3 {
     font-size: 1rem;

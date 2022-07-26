@@ -33,5 +33,10 @@ export interface IShopContext {
   increment: () => void;
   decrement: () => void;
   onAdd: (product: product, quantity: number) => void;
+  onRemove: (product: product) => void;
   cartItems: product[];
+  showCart: boolean;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+  totalQuantities: number;
+  totalPrice: number;
 }

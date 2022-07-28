@@ -17,8 +17,6 @@ const Home: NextPage = () => {
 
   if (fetching) return <p>Loading... </p>;
   if (error) return <p>Oh no... {error.message} </p>;
-  // console.log(data?.products.data[0].attributes.title);
-  console.log(products);
   return (
     <div>
       <main>

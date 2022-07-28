@@ -18,7 +18,10 @@ export default function ProductDetails() {
   const [results] = useQuery<data>({
     query: GET_PRODUCT_QUERY,
     variables: {slug: query.slug},
+    pause: !query.slug,
   });
+  const {quantity, increment, decrement, cartItems, onAdd} = store();
+
   const {data, fetching, error} = results;
   // Check for the data coming in
   if (fetching) return <p>Loading... </p>;
@@ -27,7 +30,6 @@ export default function ProductDetails() {
   // extract data
 
   // access react context data
-  const {quantity, increment, decrement, cartItems, onAdd} = store();
 
   return (
     <DetailsStyle>

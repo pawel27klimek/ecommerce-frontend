@@ -28,13 +28,12 @@ export const StateContext = ({children}: {children: ReactNode}) => {
 
   const decrement = () => {
     setQuantity((value) => {
-      if (value < 2) {
+      if (value <= 1) {
         return 1;
       } else {
         return value - 1;
       }
     });
-    quantity < 2 ? setQuantity(1) : setQuantity((value) => value - 1);
   };
 
   const onAdd = (product: product, quantity: number) => {

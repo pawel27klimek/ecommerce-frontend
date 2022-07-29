@@ -23,6 +23,7 @@ export default async function handler(
           },
           unit_amount: item.price * 100,
         },
+        adjustable_quantity: {enabled: true, minimum: 1},
         quantity: item.quantity,
       };
     });
@@ -33,7 +34,15 @@ export default async function handler(
         submit_type: "pay",
         mode: "payment",
         payment_method_types: ["card"],
-        shipping_address_collection: {allowed_countries: ["US", "CA"]},
+        shipping_address_collection: {
+          allowed_countries: ["US", "CA", "GB", "PL", "RO"],
+        },
+        allow_promotion_codes: true,
+
+        shipping_options: [
+          {shipping_rate: "shr_1LQi2dFesyAz0gmRhZVc07HY"},
+          {shipping_rate: "shr_1LQhflFesyAz0gmRpkdZi25v"},
+        ],
         line_items: lineItems,
       });
       console.log(req.body);

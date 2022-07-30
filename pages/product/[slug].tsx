@@ -10,6 +10,7 @@ import {
 } from "../../styles/ProductDetails";
 import {AiFillPlusCircle, AiFillMinusCircle} from "react-icons/ai";
 import store from "../../lib/contex";
+import toast, {Toast} from "react-hot-toast";
 
 export default function ProductDetails() {
   //Fetch slug
@@ -27,9 +28,14 @@ export default function ProductDetails() {
   if (fetching) return <p>Loading... </p>;
   if (error) return <p>Oh no... {error.message} </p>;
   const product = data?.products.data[0].attributes;
-  // extract data
 
-  // access react context data
+  //create a toast
+  const notify = () => {
+    toast.success(`${product?.title} added to your cart`, {
+      duration: 1500,
+      icon: "☺️",
+    });
+  };
 
   return (
     <DetailsStyle>
@@ -53,7 +59,10 @@ export default function ProductDetails() {
           </button>
         </Quantity>
         <Buy
-          onClick={() => onAdd(data?.products.data[0].attributes!, quantity)}
+          onClick={() => {
+            onAdd(data?.products.data[0].attributes!, quantity);
+            notify();
+          }}
         >
           Add to cart
         </Buy>

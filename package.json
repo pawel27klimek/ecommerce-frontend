@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.9.1",
     "@stripe/stripe-js": "^1.34.0",
     "framer-motion": "^6.5.1",
     "graphql": "^16.5.0",

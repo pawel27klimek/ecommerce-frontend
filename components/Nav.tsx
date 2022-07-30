@@ -5,13 +5,18 @@ import Cart from "./Cart";
 import store from "../lib/contex";
 import {AnimatePresence} from "framer-motion";
 import {motion} from "framer-motion";
+import User from "./User";
+import {useUser} from "@auth0/nextjs-auth0";
 
 export default function Nav() {
   const {showCart, setShowCart, totalQuantities} = store();
+  const {user, error, isLoading} = useUser();
   return (
     <NavStyles>
       <Link href={"/"}>Style</Link>
+
       <NavItems>
+        <User />
         <div onClick={() => setShowCart(true)}>
           {totalQuantities > 0 && (
             <motion.span animate={{scale: 1}} initial={{scale: 0}}>

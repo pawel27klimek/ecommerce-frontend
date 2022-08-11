@@ -10,7 +10,8 @@ import {
 } from "../../styles/ProductDetails";
 import {AiFillPlusCircle, AiFillMinusCircle} from "react-icons/ai";
 import store from "../../lib/contex";
-import toast, {Toast} from "react-hot-toast";
+import toast from "react-hot-toast";
+import {useEffect} from "react";
 
 export default function ProductDetails() {
   //Fetch slug
@@ -21,7 +22,11 @@ export default function ProductDetails() {
     variables: {slug: query.slug},
     pause: !query.slug,
   });
-  const {quantity, increment, decrement, cartItems, onAdd} = store();
+  const {quantity, increment, decrement, cartItems, onAdd, setQuantity} =
+    store();
+
+  //reset quantity
+  useEffect(() => setQuantity(1), []);
 
   const {data, fetching, error} = results;
   // Check for the data coming in
@@ -31,9 +36,8 @@ export default function ProductDetails() {
 
   //create a toast
   const notify = () => {
-    toast.success(`${product?.title} added to your cart`, {
+    toast.success(`${product?.title} added to your cart ☺️`, {
       duration: 1500,
-      icon: "☺️",
     });
   };
 

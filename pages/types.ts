@@ -39,4 +39,5 @@ export interface IShopContext {
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
   totalQuantities: number;
   totalPrice: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }

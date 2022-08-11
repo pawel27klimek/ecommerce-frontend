@@ -13,6 +13,7 @@ const ShopContext = createContext<IShopContext>({
   setShowCart: () => undefined,
   totalQuantities: 0,
   totalPrice: 0,
+  setQuantity: () => undefined,
 });
 
 export const StateContext = ({children}: {children: ReactNode}) => {
@@ -51,7 +52,6 @@ export const StateContext = ({children}: {children: ReactNode}) => {
     } else {
       setCartItems((value) => [...value, {...product, quantity}]);
     }
-    setQuantity(1);
   };
 
   const onRemove = (product: product) => {
@@ -87,6 +87,7 @@ export const StateContext = ({children}: {children: ReactNode}) => {
         onRemove,
         totalQuantities,
         totalPrice,
+        setQuantity,
       }}
     >
       {children}

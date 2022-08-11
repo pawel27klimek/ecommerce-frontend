@@ -1,11 +1,9 @@
 import type {NextPage} from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import {useQuery} from "urql";
 import {PRODUCT_QUERY} from "../lib/query";
 import Product from "../components/Product";
-import {product, data} from "./types";
+import {data} from "./types";
 import {Gallery} from "../styles/Gallery";
 
 const Home: NextPage = () => {
@@ -19,6 +17,10 @@ const Home: NextPage = () => {
   if (error) return <p>Oh no... {error.message} </p>;
   return (
     <div>
+      <Head>
+        <title>Style ecommerce</title>
+        <meta name="Style ecommerce" content="Fashion ecommerce website" />
+      </Head>
       <main>
         <Gallery>
           {products?.map((product) => (

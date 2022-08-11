@@ -1,6 +1,6 @@
 import {NextApiResponse, NextApiRequest} from "next";
 import {Stripe} from "stripe";
-import {product} from "../types";
+import {product} from "../../types";
 import {getSession} from "@auth0/nextjs-auth0";
 
 const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`, {

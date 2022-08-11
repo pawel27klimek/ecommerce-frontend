@@ -1,7 +1,7 @@
 import {useQuery} from "urql";
 import {GET_PRODUCT_QUERY} from "../../lib/query";
 import {useRouter} from "next/router";
-import {data} from "../types";
+import {data} from "../../types";
 import {
   DetailsStyle,
   ProductInfo,
@@ -9,7 +9,7 @@ import {
   Buy,
 } from "../../styles/ProductDetails";
 import {AiFillPlusCircle, AiFillMinusCircle} from "react-icons/ai";
-import store from "../../lib/contex";
+import Store from "../../lib/contex";
 import toast from "react-hot-toast";
 import {useEffect} from "react";
 
@@ -23,7 +23,7 @@ export default function ProductDetails() {
     pause: !query.slug,
   });
   const {quantity, increment, decrement, cartItems, onAdd, setQuantity} =
-    store();
+    Store();
 
   //reset quantity
   useEffect(() => setQuantity(1), []);

@@ -1,5 +1,5 @@
 import React from "react";
-import store from "../lib/contex";
+import Store from "../lib/contex";
 import {
   CartContainer,
   CartStyle,
@@ -32,7 +32,7 @@ const cards = {
 };
 
 const Cart = () => {
-  const {cartItems, setShowCart, onAdd, onRemove, totalPrice} = store();
+  const {cartItems, setShowCart, onAdd, onRemove, totalPrice} = Store();
 
   //payment
   const handleCheckout = async () => {

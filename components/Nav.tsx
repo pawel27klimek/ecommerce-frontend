@@ -2,14 +2,14 @@ import Link from "next/link";
 import {FiShoppingBag} from "react-icons/fi";
 import {NavStyles, NavItems} from "../styles/NavStyles";
 import Cart from "./Cart";
-import store from "../lib/contex";
+import Store from "../lib/contex";
 import {AnimatePresence} from "framer-motion";
 import {motion} from "framer-motion";
 import User from "./User";
 import {useUser} from "@auth0/nextjs-auth0";
 
 export default function Nav() {
-  const {showCart, setShowCart, totalQuantities} = store();
+  const {showCart, setShowCart, totalQuantities} = Store();
   const {user, error, isLoading} = useUser();
   return (
     <NavStyles>

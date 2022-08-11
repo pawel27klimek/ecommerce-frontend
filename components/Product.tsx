@@ -1,5 +1,5 @@
 import React from "react";
-import {product} from "../pages/types";
+import {product} from "../types";
 import {ProductStyle} from "../styles/ProductStyle";
 import Link from "next/link";
 

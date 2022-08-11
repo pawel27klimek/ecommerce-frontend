@@ -3,7 +3,7 @@ import Head from "next/head";
 import {useQuery} from "urql";
 import {PRODUCT_QUERY} from "../lib/query";
 import Product from "../components/Product";
-import {data} from "./types";
+import {data} from "../types";
 import {Gallery} from "../styles/Gallery";
 
 const Home: NextPage = () => {

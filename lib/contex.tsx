@@ -1,6 +1,6 @@
 import {useContext, createContext, ReactNode, useState} from "react";
 import React from "react";
-import {IShopContext, product} from "../pages/types";
+import {IShopContext, product} from "../types";
 
 const ShopContext = createContext<IShopContext>({
   quantity: 1,
@@ -95,6 +95,6 @@ export const StateContext = ({children}: {children: ReactNode}) => {
   );
 };
 
-export default function store() {
+export default function Store() {
   return useContext(ShopContext);
 }

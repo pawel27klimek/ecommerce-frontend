@@ -44,7 +44,7 @@ export const CardInfo = styled(motion.div)`
 `;
 
 export const EmptyStyle = styled(motion.div)`
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   transform: translate(-50%, 0%);
   display: flex;
